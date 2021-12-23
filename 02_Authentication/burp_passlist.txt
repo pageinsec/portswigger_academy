@@ -1,4 +1,4 @@
-﻿123456
+123456
 password
 12345678
 qwerty
@@ -27,7 +27,7 @@ superman
 1qaz2wsx
 7777777
 121212
-0
+000000
 qazwsx
 123qwe
 killer
