@@ -1,7 +1,7 @@
 # PortSwigger Web Academy Notes
 Mostly scripts to automate the exploits.
 
-Going in the order of the recomended learning path - starting with SQLi. Community soluations are excellent - make sure to check those out.
+Going in the order of the recomended learning path - starting with SQLi. Community soluations are excellent - make sure to check those out. 
 
 # Resources
 [PortSwigger Academy](https://portswigger.net/web-security/)
