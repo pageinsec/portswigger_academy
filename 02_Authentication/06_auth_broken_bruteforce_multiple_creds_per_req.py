@@ -9,7 +9,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Add proxy for troubleshoot, for urllib3 all proxies should use http
 # Uses the Burp proxy -> Make sure Burp is running
-# Kind of have to go through Burp on this one to get the URL for the successful login
+# Kind of have to go through Burp on this one to get the URL for the successful login to copy into browser for further exploitation
 proxies = {
     'http':'http://127.0.0.1:8080',
     'https':'http://127.0.0.1:8080'
