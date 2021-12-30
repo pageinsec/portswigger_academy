@@ -1,6 +1,5 @@
 # Intersperse passwords to avoid lockouts
 import pandas as pd
-import csv
 
 new_passwords = []
 passwords = pd.read_csv('./burp_pass.csv')

@@ -1,6 +1,5 @@
 # Intersperse user list with known good user to avoid lockouts
 import pandas as pd
-import csv
 
 new_users = []
 users = pd.read_csv('./burp_users.csv')
