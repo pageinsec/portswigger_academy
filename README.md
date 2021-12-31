@@ -3,6 +3,9 @@ Mostly scripts to automate the exploits.
 
 Going in the order of the recomended learning path - starting with SQLi. Community soluations are excellent - make sure to check those out. 
 
+Section takeaways are here: https://apageinsec.wordpress.com/portswigger-web-academy-stuff/
+(May also end up putting more details there if I have time.)
+
 # Resources
 [PortSwigger Academy](https://portswigger.net/web-security/)
 
