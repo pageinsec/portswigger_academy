@@ -1,6 +1,5 @@
 import sys
 import requests
-from requests.models import codes
 import urllib3
 
 # Suppress the insecure requests warning
