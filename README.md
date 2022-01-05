@@ -16,3 +16,5 @@ Rana Khalil (featured Community Solution)
 
 Michael Sommer (featured Community Solution)
 * [YouTube](https://www.youtube.com/user/Michael10Sommer/featured)
+
+[Lab list with difficulties](https://www.deepfryd.com/burp-academy-apprentice/) from DeepFryd - helpful to see lab difficulties without having to click through.
