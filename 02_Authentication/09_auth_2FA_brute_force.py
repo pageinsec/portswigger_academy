@@ -1,3 +1,4 @@
+# Let some troubleshooting steps to help tracking what is happening during the exploit
 import sys
 import requests
 import urllib3
@@ -14,7 +15,7 @@ proxies = {
     'https':'http://127.0.0.1:8080'
 }
 
-# Given info so no enumearation
+# Given info so no enumeration
 # Need to login as known, send login2 URL as carlos using session cookie from known, then brute force carlos' token
 def bypass_2FA(url):
     # Login, attempt MFA
@@ -55,17 +56,13 @@ def bypass_2FA(url):
 
 if __name__ == "__main__":
     try:
-        #valid_usernames = []
         url = sys.argv[1].strip()
-        #session_cookie = sys.argv[2].strip()
 
     except IndexError:
-        print(f'[-] Usage: {sys.argv[0]} <url-login> <url-login2>')
+        print(f'[-] Usage: {sys.argv[0]} <url>')
         print(f'[-] Example: {sys.argv[0]} www.example.com')
         sys.exit(-1)
     
-    # Set up session to track gookies
-    #s = requests.Session()
     print('[-] Performing initial login and 2FA bypass')
     bypass_2FA(url)
 
