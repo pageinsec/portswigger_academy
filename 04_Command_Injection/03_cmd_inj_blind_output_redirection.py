@@ -17,7 +17,7 @@ def cmd_inj(url):
     r = s.get(url+'feedback', verify=False, proxies=proxies)
     soup = BeautifulSoup(r.text, 'html.parser')
     csrf = soup.find("input")['value']
-
+    
     #data = dict()
     #keys = int(input('Number of data parameters? '))
     #for i in range(0,keys):
@@ -92,7 +92,7 @@ def cmd_inj(url):
             
             file += 1
             
-            data[k] = data[k].replace(cmd,'')
+            data[k] = data[k].replace(f'{cmd}','')
             #print(data)
     f.close()
         
